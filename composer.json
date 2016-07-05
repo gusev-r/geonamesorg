@@ -18,5 +18,8 @@
     },
     "autoload": {
         "classmap": ["Database.php"]
+    },
+    "autoload": {
+        "psr-0": {"geonamesorg\\": "src/"}
     }
 }
