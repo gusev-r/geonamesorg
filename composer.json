@@ -1,0 +1,22 @@
+{
+    "name": "geonamesorg/geonamesorg",
+    "type": "library",
+    "description": "HTML Parser",
+    "keywords": ["html","parse","parser"],
+    "homepage": "https://github.com/gusev-r/geonamesorg",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "gusev-r",
+            "email": "gusevrv@gmail.com",
+            "homepage": "https://github.com/gusev-r",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.0.0"
+    },
+    "autoload": {
+        "classmap": ["Database.php"]
+    }
+}
