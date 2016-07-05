@@ -1,6 +1,6 @@
 <?php
 
-namespace Geonamesorg\Database;
+namespace Geonamesorg;
 
 use \PDO;
 
