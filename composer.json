@@ -17,6 +17,7 @@
         "php": ">=5.0.0"
     },
     "autoload": {
-      "psr-0": {"Geonamesorg": "src/"}
+
+        "psr-4": { "Geonamesorg\\": "" }
     }
 }
