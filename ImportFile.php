@@ -1,5 +1,7 @@
 <?php
+
 namespace Geonamesorg;
+
 //namespace FileSystem;
 
 class ImportFile {

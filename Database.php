@@ -10,22 +10,27 @@ class Database {
     private $username;
     private $password;
     private $dbname;
-
+    private $conn;
     function __construct() {
         $this->servername = "localhost";
         $this->username = "root";
         $this->password = "123123";
         $this->dbname = "test_1";
     }
-
+    public function connect(){
+        try {
+            $this->conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+            // set the PDO error mode to exception
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return FALSE;
+        }
+    }
     public function insert($importData, $arrayNames, $tableName) {
         try {
-            $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
-            // set the PDO error mode to exception
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
             $implodeName = $this->implodeName($arrayNames, array('before' => ':', 'after' => ', '));
-            $stmt = $conn->prepare("INSERT INTO $tableName(" . implode(',', $arrayNames) . ") VALUES(" . $implodeName . ")");
+            $stmt = $this->conn->prepare("INSERT INTO $tableName(" . implode(',', $arrayNames) . ") VALUES(" . $implodeName . ")");
 
             foreach ($arrayNames as $key => $value) {
                 $stmt->bindParam(':' . $value, $$value);
@@ -34,12 +39,11 @@ class Database {
                 extract($row);
                 $stmt->execute();
             }
-            return TRUE;
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
             return FALSE;
         }
-        $conn = null;
+        return TRUE;
     }
 
     public function read($tableName) {
