@@ -12,14 +12,16 @@ class Database {
     private $dbname;
     private $conn;
     function __construct() {
-        $this->servername = "localhost";
-        $this->username = "root";
-        $this->password = "123123";
-        $this->dbname = "test_1";
     }
-    public function connect(){
+    public function connect($dbname = '', $servername = "localhost", $username = "root", $password = "123123"){
+
+        $this->servername = $servername;
+        $this->username = $username;
+        $this->password = $password;
+        $this->dbname = $dbname;
+
         try {
-            $this->conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+            $this->conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname;charset=UTF8", $this->username, $this->password);
             // set the PDO error mode to exception
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
@@ -48,7 +50,7 @@ class Database {
 
     public function read($tableName) {
         try {
-            $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+            $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname;charset=UTF8", $this->username, $this->password);
             // set the PDO error mode to exception
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 

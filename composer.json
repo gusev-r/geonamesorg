@@ -2,7 +2,7 @@
     "name": "geonamesorg/geonamesorg",
     "type": "library",
     "description": "HTML Parser",
-    "keywords": ["html","parse","parser"],
+    "keywords": ["parser"],
     "homepage": "https://github.com/gusev-r/geonamesorg",
     "license": "MIT",
     "authors": [
